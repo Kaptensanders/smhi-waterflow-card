@@ -1,0 +1,10 @@
+# Node dependencies
+node_modules/
+
+# Build cache & intermediates
+dist/*
+!dist/waterflow-card.js
+
+# Logs
+*.log*
+
