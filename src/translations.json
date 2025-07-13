@@ -1,0 +1,10 @@
+{
+  "en": {
+    "waterflow": "Waterflow (m³/s)",
+    "precipitation": "Precipitation (mm)"
+  },
+  "sv": {
+    "waterflow": "Vattenflöde (m³/s)",
+    "precipitation": "Nederbörd (mm)"
+  }
+}

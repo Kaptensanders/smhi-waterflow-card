@@ -2,11 +2,13 @@
   "name": "Waterflow Card",
   "content_in_root": false,
   "filename": "waterflow-card.js",
-  "description": "Lovelace companion card for the Waterflow custom componant to visualize waterflow, precipitation, and historical data from Home Assistant sensors",
+  "description": "Lovelace companion card for the Waterflow custom component to visualize waterflow, precipitation, and historical data from Home Assistant sensors",
   "type": "module",
   "version": "1.0.0",
-  "homeassistant": "2024.8.0",
+  "homeassistant": "2023.8.0",
   "render_readme": true,
+  "category": "lovelace",
+  "iot_class": "local_polling",
   "resources": [
     {
       "url": "/hacsfiles/waterflow-card/waterflow-card.js",

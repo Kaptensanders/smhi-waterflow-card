@@ -1,0 +1,154 @@
+title: Waterflow Card Test Panel
+
+views:
+  - title: Basic Configurations
+    path: basic
+    panel: true  # Enable panel mode for full width
+    cards:
+      # Main container for all cards
+      - type: vertical-stack
+        cards:
+          # Two column layout for regular cards
+          - type: horizontal-stack
+            cards:
+              - type: custom:waterflow-card
+                name: Basic Waterflow Card
+                info_entity_id: sensor.ljordalen_info
+                show_header: true
+              
+              - type: custom:waterflow-card
+                name: Waterflow Card (No Header)
+                info_entity_id: sensor.ljordalen_info
+                show_header: false
+          
+          # Another row of two columns
+          - type: horizontal-stack
+            cards:
+              - type: custom:waterflow-card
+                name: Waterflow Only (No Precipitation)
+                info_entity_id: sensor.ljordalen_info
+                show_precipitation: false
+              
+              - type: custom:waterflow-card
+                name: Waterflow with Precipitation
+                info_entity_id: sensor.ljordalen_info
+                show_precipitation: true
+          
+          # Full Width Example (no horizontal-stack)
+          - type: custom:waterflow-card
+            name: Full Width Example
+            info_entity_id: sensor.ljordalen_info
+            show_precipitation: true
+            show_mq_levels: true
+            show_average: true
+
+  - title: Reference Lines
+    path: reference-lines
+    cards:
+      - type: custom:waterflow-card
+        name: With MQ Levels
+        info_entity_id: sensor.ljordalen_info
+        show_mq_levels: true
+      
+      - type: custom:waterflow-card
+        name: With Average Reference
+        info_entity_id: sensor.ljordalen_info
+        show_average: true
+      
+      - type: custom:waterflow-card
+        name: With Min/Max References
+        info_entity_id: sensor.ljordalen_info
+        show_min: true
+        show_max: true
+      
+      - type: custom:waterflow-card
+        name: All Reference Lines
+        info_entity_id: sensor.ljordalen_info
+        show_mq_levels: true
+        show_average: true
+        show_min: true
+        show_max: true
+
+  - title: Historical Data
+    path: historical
+    cards:
+      - type: custom:waterflow-card
+        name: Single Historical Year (1991)
+        info_entity_id: sensor.ljordalen_info
+        show_history_year: ["1991"]
+      
+      - type: custom:waterflow-card
+        name: Multiple Historical Years
+        info_entity_id: sensor.ljordalen_info
+        show_history_year: ["1991", "2000", "2022"]
+      
+      - type: custom:waterflow-card
+        name: All Historical Years
+        info_entity_id: sensor.ljordalen_info
+        show_history_year: "all"
+      
+      - type: custom:waterflow-card
+        name: Historical with References
+        info_entity_id: sensor.ljordalen_info
+        show_history_year: ["2000"]
+        show_average: true
+        show_min: true
+        show_max: true
+
+  - title: Comprehensive Examples
+    path: comprehensive
+    cards:
+      - type: custom:waterflow-card
+        name: Complete Waterflow Card
+        info_entity_id: sensor.ljordalen_info
+        show_precipitation: true
+        show_mq_levels: true
+        show_average: true
+        show_min: true
+        show_max: true
+        show_history_year: ["2022"]
+      
+      - type: custom:waterflow-card
+        name: Minimal Configuration
+        info_entity_id: sensor.ljordalen_info
+        show_precipitation: false
+        show_average: false
+      
+      - type: custom:waterflow-card
+        name: Focus on Current Data
+        info_entity_id: sensor.ljordalen_info
+        show_precipitation: true
+        show_mq_levels: true
+        show_average: false
+        show_min: false
+        show_max: false
+        show_history_year: null
+      
+      - type: custom:waterflow-card
+        name: Focus on Historical Comparison
+        info_entity_id: sensor.ljordalen_info
+        show_precipitation: false
+        show_mq_levels: false
+        show_average: true
+        show_min: true
+        show_max: true
+        show_history_year: ["1991", "2022"]
+        
+  - title: Legend Examples
+    path: legend
+    cards:
+      - type: custom:waterflow-card
+        name: With Legend Enabled
+        info_entity_id: sensor.ljordalen_info
+        show_precipitation: true
+        show_mq_levels: true
+        show_average: true
+        show_legend: true
+      
+      - type: custom:waterflow-card
+        name: Without Legend (Default)
+        info_entity_id: sensor.ljordalen_info
+        show_precipitation: true
+        show_mq_levels: true
+        show_average: true
+        # show_legend defaults to false
