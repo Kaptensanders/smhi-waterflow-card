@@ -80,12 +80,12 @@ export class WaterflowCard extends LitElement implements LovelaceCard {
     }
 
     // Validate type
-    if (config.type !== 'custom:waterflow-card') {
+    if (config.type !== 'custom:smhi-waterflow-card') {
       console.warn('Unexpected card type:', config.type);
     }
 
     this._config = {
-      name: config.name ?? 'Waterflow',
+      name: config.name ?? 'SMHI Waterflow',
       show_header: config.show_header !== false,
       show_precipitation: config.show_precipitation !== false,
       show_average: config.show_average !== false,
@@ -287,4 +287,4 @@ export class WaterflowCard extends LitElement implements LovelaceCard {
 }
 
 // Register the custom element
-customElements.define('waterflow-card', WaterflowCard);
+customElements.define('smhi-waterflow-card', WaterflowCard);

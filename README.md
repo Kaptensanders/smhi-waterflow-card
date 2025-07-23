@@ -2,7 +2,7 @@
 
 A Lovelace card for Home Assistant that visualizes waterflow, precipitation, and historical reference data from the Waterflow custom component.
 
-![Waterflow Card](https://github.com/Kaptensanders/waterflow-card/raw/main/images/card-example.png)
+![Waterflow Card](https://github.com/Kaptensanders/smhi-waterflow-card/raw/main/images/card-example.png)
 
 ## Features
 
@@ -14,7 +14,7 @@ A Lovelace card for Home Assistant that visualizes waterflow, precipitation, and
 
 ## Requirements
 
-- Home Assistant with the [Waterflow custom component](https://github.com/Kaptensanders/waterflow) installed
+- Home Assistant with the [Waterflow custom component](https://github.com/Kaptensanders/smhi-waterflow) installed
 - HACS (Home Assistant Community Store)
 
 ## Installation
@@ -30,14 +30,14 @@ A Lovelace card for Home Assistant that visualizes waterflow, precipitation, and
 
 ### Manual Installation
 
-1. Download the `waterflow-card.js` file from the [latest release](https://github.com/Kaptensanders/waterflow-card/releases/latest)
+1. Download the `waterflow-card.js` file from the [latest release](https://github.com/Kaptensanders/smhi-waterflow-card/releases/latest)
 2. Upload it to your Home Assistant instance using the file editor or via SFTP
 3. Place the file in your `config/www` directory
 4. Add a reference to the card in your `ui-lovelace.yaml` or through the UI:
 
 ```yaml
 resources:
-  - url: /local/waterflow-card.js
+  - url: /local/smhi-waterflow-card.js
     type: module
 ```
 
@@ -48,7 +48,7 @@ resources:
 Add the card to your Lovelace dashboard with the following configuration:
 
 ```yaml
-type: custom:waterflow-card
+type: custom:smhi-waterflow-card
 device: ljordalen  # OR use info_entity
 # info_entity: sensor.ljordalen_info
 name: Ljordalen Waterflow
@@ -82,7 +82,7 @@ The card automatically uses the following entities based on your device name:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Kaptensanders/waterflow-card.git
+git clone https://github.com/Kaptensanders/smhi-waterflow-card.git
 cd waterflow-card
 
 # Install dependencies

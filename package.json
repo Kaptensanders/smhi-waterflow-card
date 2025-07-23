@@ -1,10 +1,10 @@
 {
-  "name": "waterflow-card",
+  "name": "smhi-waterflow-card",
   "version": "1.0.0",
   "description": "Lovelace companion card to the waterflow custom component, to visualize waterflow, precipitation, and historical reference data from Home Assistant sensors.",
   "type": "module",
-  "main": "dist/waterflow-card.js",
-  "module": "dist/waterflow-card.js",
+  "main": "dist/smhi-waterflow-card.js",
+  "module": "dist/smhi-waterflow-card.js",
   "scripts": {
     "build": "rollup -c",
     "build:prod": "NODE_ENV=production rollup -c",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Kaptensanders/waterflow-card"
+    "url": "https://github.com/Kaptensanders/smhi-waterflow-card"
   },
   "keywords": [
     "home-assistant",
@@ -30,7 +30,7 @@
   ],
   "author": "Kaptensanders",
   "license": "MIT",
-  "homepage": "https://github.com/Kaptensanders/waterflow-card",
+  "homepage": "https://github.com/Kaptensanders/smhi-waterflow-card",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.1.0",

@@ -22,7 +22,7 @@ const external = [];
 export default {
   input: 'src/card.ts',
   output: {
-    file: 'dist/waterflow-card.js',
+    file: 'dist/smhi-waterflow-card.js',
     format: 'es',                // ES module for HA compatibility
     sourcemap: !isProd,          // Source maps only in development
   },
