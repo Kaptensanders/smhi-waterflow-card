@@ -1,21 +1,28 @@
-# Waterflow Card
+# SMHI Waterflow Card
 
-A Lovelace card for Home Assistant that visualizes waterflow, precipitation, and historical reference data from the Waterflow custom component.
+A Lovelace card for Home Assistant that visualizes waterflow, precipitation, and historical reference data from the SMHI Waterflow integration.
 
 ![Waterflow Card](https://github.com/Kaptensanders/smhi-waterflow-card/raw/main/images/card-example.png)
 
 ## Features
 
-- Display waterflow data with a beautiful chart interface
-- Show precipitation data on a secondary axis
-- Compare current data with historical references
+- Display current and forecast waterflow data with an interactive chart
+- Show precipitation data on an inverted secondary axis
+- Compare current data with historical references:
+  - Average waterflow (1991-2022)
+  - Minimum and maximum historical values
+  - Reference flow levels (MQ, MLQ, MHQ)
+  - Specific historical years for comparison
+- Mark today's date with a vertical reference line
+- Interactive tooltips showing precise values
 - Responsive design that works on desktop and mobile
-- Customizable appearance
+- Internationalization support (currently English and Swedish)
+- Customizable appearance through various configuration options
 
 ## Requirements
 
-- Home Assistant with the [Waterflow custom component](https://github.com/Kaptensanders/smhi-waterflow) installed
-- HACS (Home Assistant Community Store)
+- Home Assistant with the [SMHI Waterflow integration](https://github.com/Kaptensanders/smhi-waterflow) installed and configured
+- HACS (Home Assistant Community Store) for easy installation
 
 ## Installation
 
@@ -24,16 +31,16 @@ A Lovelace card for Home Assistant that visualizes waterflow, precipitation, and
 1. Make sure you have [HACS](https://hacs.xyz/) installed
 2. Go to HACS → Frontend
 3. Click the "+ Explore & Download Repositories" button
-4. Search for "Waterflow Card"
+4. Search for "SMHI Waterflow Card"
 5. Click Download
 6. Restart Home Assistant
 
 ### Manual Installation
 
-1. Download the `waterflow-card.js` file from the [latest release](https://github.com/Kaptensanders/smhi-waterflow-card/releases/latest)
-2. Upload it to your Home Assistant instance using the file editor or via SFTP
+1. Download the latest release from the [GitHub repository](https://github.com/Kaptensanders/smhi-waterflow-card/releases/latest)
+2. Upload the `smhi-waterflow-card.js` file to your Home Assistant instance using the file editor or via SFTP
 3. Place the file in your `config/www` directory
-4. Add a reference to the card in your `ui-lovelace.yaml` or through the UI:
+4. Add a reference to the card in your Lovelace resources:
 
 ```yaml
 resources:
@@ -49,32 +56,104 @@ Add the card to your Lovelace dashboard with the following configuration:
 
 ```yaml
 type: custom:smhi-waterflow-card
-device: ljordalen  # OR use info_entity
-# info_entity: sensor.ljordalen_info
-name: Ljordalen Waterflow
-show_header: true
+info_entity_id: sensor.my_river_info
+name: My River Waterflow
+show_precipitation: true
+show_average: true
+show_mq_levels: true
+show_min: false
+show_max: false
+show_legend: true
 ```
 
 ### Configuration Options
 
-| Option | Type | Required | Default | Description |
-|--------|------|----------|---------|-------------|
-| type | string | Yes | | Must be `custom:waterflow-card` |
-| device | string | Yes* | | Device identifier (e.g., location name) |
-| info_entity | string | Yes* | | Entity ID for the info sensor |
-| name | string | No | Waterflow | Custom title for the card |
-| show_header | boolean | No | true | Whether to show the header |
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `type` | string | Required | Must be `custom:smhi-waterflow-card` |
+| `info_entity_id` | string | Required | The info sensor entity ID (e.g., `sensor.my_river_info`) |
+| `name` | string | "SMHI Waterflow" | Card title |
+| `show_header` | boolean | true | Whether to show the card header |
+| `show_precipitation` | boolean | true | Whether to show precipitation data as bars |
+| `show_average` | boolean | true | Whether to show average historical data (1991-2022) |
+| `show_mq_levels` | boolean | false | Whether to show reference flow levels (MQ, MLQ, MHQ) |
+| `show_min` | boolean | false | Whether to show minimum historical data |
+| `show_max` | boolean | false | Whether to show maximum historical data |
+| `show_history_year` | string[] or "all" | null | Show specific historical years (e.g., ["2018", "2022"]) or "all" for all years |
+| `show_legend` | boolean | false | Whether to show the chart legend |
 
-*Either `device` or `info_entity` must be specified
+## Chart Features
 
-## Entities Used
+### Main Data Series
 
-The card automatically uses the following entities based on your device name:
+- **Waterflow**: Displayed as a blue line chart showing current and forecast waterflow in m³/s
+- **Precipitation**: Displayed as light blue bars from the top, showing precipitation in mm (when enabled)
 
-- `sensor.<device>_waterflow` - Main waterflow data
-- `sensor.<device>_precipitation` - Precipitation data
-- `sensor.<device>_waterflow_history` - Historical waterflow data
-- `sensor.<device>_info` - Information entity with attributes
+### Reference Lines
+
+- **MQ (Mean Flow)**: Dashed horizontal line showing the mean flow level
+- **MLQ (Mean Low Flow)**: Dashed horizontal line showing the mean low flow level
+- **MHQ (Mean High Flow)**: Dashed horizontal line showing the mean high flow level
+- **Today**: Vertical dashed line marking the current date
+
+### Historical References
+
+- **Average (1991-2022)**: Dotted line showing the average waterflow for each day of the year
+- **Min (1991-2022)**: Dotted line showing the minimum historical waterflow
+- **Max (1991-2022)**: Dotted line showing the maximum historical waterflow
+- **Historical Years**: Individual lines for specific years when configured
+
+## Internationalization
+
+The card automatically uses the language set in Home Assistant. Currently supported languages:
+
+- English
+- Swedish
+
+## Examples
+
+### Basic Configuration
+
+```yaml
+type: custom:smhi-waterflow-card
+info_entity_id: sensor.ljordalen_info
+name: Ljordalen Waterflow
+```
+
+### Showing All Historical References
+
+```yaml
+type: custom:smhi-waterflow-card
+info_entity_id: sensor.ljordalen_info
+name: Ljordalen Waterflow
+show_precipitation: true
+show_average: true
+show_mq_levels: true
+show_min: true
+show_max: true
+show_legend: true
+```
+
+### Comparing with Specific Historical Years
+
+```yaml
+type: custom:smhi-waterflow-card
+info_entity_id: sensor.ljordalen_info
+name: Ljordalen Waterflow
+show_precipitation: true
+show_average: true
+show_history_year: ["2018", "2022"]
+show_legend: true
+```
+
+## Troubleshooting
+
+If the card doesn't display properly:
+
+1. Check that the SMHI Waterflow integration is properly configured and the entities exist
+2. Verify that the `info_entity_id` is correct and points to a valid entity
+3. Check the browser console for any JavaScript errors
+4. Try refreshing the page or restarting Home Assistant
 
 ## Development
 
@@ -83,7 +162,7 @@ The card automatically uses the following entities based on your device name:
 ```bash
 # Clone the repository
 git clone https://github.com/Kaptensanders/smhi-waterflow-card.git
-cd waterflow-card
+cd smhi-waterflow-card
 
 # Install dependencies
 npm install
