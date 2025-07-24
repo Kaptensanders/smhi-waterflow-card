@@ -2,69 +2,10 @@
 
 A Lovelace card for Home Assistant that visualizes waterflow, precipitation, and historical reference data from the SMHI Waterflow integration.
 
-![Waterflow Card](https://github.com/Kaptensanders/smhi-waterflow-card/raw/main/images/card-example.png)
-
-## Features
-
-- Display current and forecast waterflow data with an interactive chart
-- Show precipitation data on an inverted secondary axis
-- Compare current data with historical references:
-  - Average waterflow (1991-2022)
-  - Minimum and maximum historical values
-  - Reference flow levels (MQ, MLQ, MHQ)
-  - Specific historical years for comparison
-- Mark today's date with a vertical reference line
-- Interactive tooltips showing precise values
-- Responsive design that works on desktop and mobile
-- Internationalization support (currently English and Swedish)
-- Customizable appearance through various configuration options
-
-## Requirements
-
-- Home Assistant with the [SMHI Waterflow integration](https://github.com/Kaptensanders/smhi-waterflow) installed and configured
-- HACS (Home Assistant Community Store) for easy installation
-
 ## Installation
-
-### HACS (Recommended)
-
-1. Make sure you have [HACS](https://hacs.xyz/) installed
-2. Go to HACS → Frontend
-3. Click the "+ Explore & Download Repositories" button
-4. Search for "SMHI Waterflow Card"
-5. Click Download
-6. Restart Home Assistant
-
-### Manual Installation
-
-1. Download the latest release from the [GitHub repository](https://github.com/Kaptensanders/smhi-waterflow-card/releases/latest)
-2. Upload the `smhi-waterflow-card.js` file to your Home Assistant instance using the file editor or via SFTP
-3. Place the file in your `config/www` directory
-4. Add a reference to the card in your Lovelace resources:
-
-```yaml
-resources:
-  - url: /local/smhi-waterflow-card.js
-    type: module
-```
-
-5. Restart Home Assistant
-
-## Configuration
-
-Add the card to your Lovelace dashboard with the following configuration:
-
-```yaml
-type: custom:smhi-waterflow-card
-info_entity_id: sensor.my_river_info
-name: My River Waterflow
-show_precipitation: true
-show_average: true
-show_mq_levels: true
-show_min: false
-show_max: false
-show_legend: true
-```
+- HACS (Home Assistant Community Store) for easy installation
+- Install and configure [SMHI Waterflow integration](https://github.com/Kaptensanders/smhi-waterflow)
+- Install SMHI Waterflow Card with HACS
 
 ### Configuration Options
 
@@ -154,30 +95,3 @@ If the card doesn't display properly:
 2. Verify that the `info_entity_id` is correct and points to a valid entity
 3. Check the browser console for any JavaScript errors
 4. Try refreshing the page or restarting Home Assistant
-
-## Development
-
-### Setup Development Environment
-
-```bash
-# Clone the repository
-git clone https://github.com/Kaptensanders/smhi-waterflow-card.git
-cd smhi-waterflow-card
-
-# Install dependencies
-npm install
-
-# Build the card
-npm run build
-
-# For development with auto-rebuild
-npm run watch
-```
-
-### Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
